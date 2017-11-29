@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.Controle">
+   <children>
+      <Pane prefHeight="499.0" prefWidth="530.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TabPane prefHeight="499.0" prefWidth="530.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tabPaneCadastro" text="Cadastro">
+                  <content>
+                    <AnchorPane fx:id="tabPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnIncluir" layoutX="60.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnIncluirOnAction" text="Incluir" />
+                              <Button fx:id="btnAlterar" layoutX="165.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnAlterarOnAction" text="Alterar" />
+                              <Button fx:id="btnExcluir" layoutX="258.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnExcluirOnAction" text="Excluir" />
+                              <TextField fx:id="txtSigla" layoutX="174.0" layoutY="70.0" prefHeight="25.0" prefWidth="186.0" />
+                              <Label layoutX="117.0" layoutY="74.0" text="Nome" />
+                              <ComboBox fx:id="comboTipo" layoutX="165.0" layoutY="190.0" prefHeight="25.0" prefWidth="186.0" />
+                              <Label layoutX="115.0" layoutY="194.0" text="Tipos" />
+                              <TextField fx:id="txtCodigo" editable="false" layoutX="174.0" layoutY="33.0" prefHeight="25.0" prefWidth="60.0" />
+                              <Label layoutX="109.0" layoutY="38.0" text="Código" />
+                              <TextField fx:id="txtCPF" layoutX="172.0" layoutY="108.0" prefHeight="25.0" prefWidth="186.0" />
+                              <Label layoutX="129.0" layoutY="113.0" text="CPF" />
+                              <TextField fx:id="txtTelefone" layoutX="172.0" layoutY="144.0" prefHeight="25.0" prefWidth="186.0" />
+                              <Label layoutX="106.0" layoutY="148.0" text="Telefone" />
+                              <Button fx:id="btnLimpar" layoutX="351.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnLimparOnAction" text="Limpar" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="tabPanePesquisa" text="Pesquisa">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane layoutX="30.0" layoutY="92.0" prefHeight="310.0" prefWidth="470.0">
+                                 <content>
+                                    <TableView fx:id="tableViewPesquisa" prefHeight="311.0" prefWidth="467.0">
+                                      <columns>
+                                          <TableColumn fx:id="tableColumnCodigo" prefWidth="75.0" text="Codigo" />
+                                        <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
+                                        <TableColumn fx:id="tableColumnCPF" prefWidth="75.0" text="CPF" />
+                                          <TableColumn fx:id="tableColumnTelefone" prefWidth="75.0" text="Telefone" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="72.0" layoutY="61.0" prefHeight="17.0" prefWidth="60.0" text="Cod. Busca" />
+                              <TextField fx:id="txtBusca" layoutX="143.0" layoutY="57.0" prefHeight="25.0" prefWidth="60.0" />
+                              <Button fx:id="busca" layoutX="214.0" layoutY="57.0" mnemonicParsing="false" onAction="#btnBuscar" text="Buscar" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
