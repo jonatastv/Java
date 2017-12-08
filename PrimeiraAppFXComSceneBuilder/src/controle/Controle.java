@@ -71,7 +71,7 @@ public class Controle implements Initializable {
     private Button btnLimpar;
     
     @FXML
-    private TableView<Cliente> tableViewPesquisa;
+    private TableView<String> tableViewPesquisa;
     
     @FXML
     private TableColumn<Cliente, String> tableColumnNome;
@@ -91,21 +91,32 @@ public class Controle implements Initializable {
   //  private List<String> listClientes;
   //  private ObservableList<String> observableListClientes;
     
-    private List<Cliente> listClientes = new ArrayList<>();
-    private ObservableList<Cliente> observableListClientes;
+
+    private List<String> listClientes;
+    private ObservableList<String> observableListClientes;
     
 
     public void carregarTableViewClientes() {
-    	
     	 TipoBancoDAO tbdDAO = new TipoBancoDAO();
+    	 this.tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+    	this.tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    	tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+    	this.tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+    	
 
- 	  	this.tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
- 	  	listClientes = tbdDAO.listar();
+        listClientes = tbdDAO.testee();
+
+ 	  	
+        observableListClientes = FXCollections.observableArrayList(listClientes);
+        tableViewPesquisa.setItems(observableListClientes);
+
+ 	  //	listClientes = tbdDAO.listar();
   	
+	   System.out.println(listClientes);
+	//   observableListClientes = FXCollections.observableArrayList(listClientes);
+	 //  tableViewPesquisa.setItems(observableListClientes);
 	   
-	   observableListClientes = FXCollections.observableArrayList(listClientes);
-	   tableViewPesquisa.setItems(observableListClientes);
-	   System.out.println(observableListClientes);
+	   //System.out.println(observableListClientes);
 
 	  	//  this.tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 	  //	this.tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
@@ -263,7 +274,7 @@ public class Controle implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		
+		carregarTableViewClientes() ;
 	    comboTipo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()   		
         {
             public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
@@ -276,7 +287,7 @@ public class Controle implements Initializable {
 	//    TipoBancoDAO tbdDAO = new TipoBancoDAO();
 	    
 	//   listClientes = 	tbdDAO.listar();
-	   carregarTableViewClientes() ;
+	   
 	   
 	 //  observableListClientes = FXCollections.observableArrayList(listClientes);
 //	   comboTipo.setItems(observableListClientes);

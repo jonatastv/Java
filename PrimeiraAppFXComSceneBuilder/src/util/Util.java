@@ -157,6 +157,20 @@ public class Util
     }
     
     
+    public static boolean validaConteudoDouble(String s)
+    {
+        Double a=0.0;
+        boolean retorno=false;
+        try
+        {
+            a = Double.parseDouble(s);
+        }
+        catch(Exception e){
+            retorno=true;
+        }
+        return retorno;
+    }
+    
     public static boolean stringVaziaOuNula(String s)
     {
     	//retorna true se a string for nula ou vazia

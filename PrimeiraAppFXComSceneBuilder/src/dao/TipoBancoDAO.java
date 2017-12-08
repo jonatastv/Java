@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,8 @@ import modelo.*;
 
 public class TipoBancoDAO {
 	
+	
+
 	public Conexao conexao = new Conexao();
 	   public int incluiTipoBanco(Cliente c) throws SQLException
 	    {
@@ -181,11 +184,65 @@ public class TipoBancoDAO {
    
    
    
-   
-   
-   public List<Cliente> listar() {
+   public List<Cliente> listarr() {
        String sql = "SELECT * FROM cliente";
        List<Cliente> retorno = new ArrayList<>();
+       try {
+    	   Connection conn= conexao.abreConexaoBD();
+           ResultSet rs = null;
+           Statement st=null;
+           st = conn.createStatement();
+           rs= st.executeQuery(sql);	
+
+           while (rs.next()) {
+               Cliente cliente = new Cliente();
+               cliente.setIn_pv_codigo(rs.getInt("codigo"));
+               cliente.setSt_pv_nome(rs.getString("nome"));
+               cliente.setSt_pv_cpf(rs.getString("cpf"));
+               cliente.setIn_pv_telefone(rs.getInt("telefone"));
+               retorno.add(cliente);
+           }
+           for (Cliente cliente : retorno) {
+			System.out.println(cliente.getIn_pv_codigo());
+		}
+       } catch (SQLException ex) {
+           Logger.getLogger(TipoBancoDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return retorno;
+   }
+
+   
+   public List<String> testee() {
+       String sql = "SELECT * FROM cliente";
+       List<String> retorno = new ArrayList<>();
+       try {
+          // PreparedStatement stmt = connection.prepareStatement(sql);
+          // ResultSet resultado = stmt.executeQuery();
+           
+           Connection conn= conexao.abreConexaoBD();
+           ResultSet rs = null;
+           Statement st=null;
+           st = conn.createStatement();
+           rs= st.executeQuery(sql);
+           while (rs.next()) {
+               Cliente a = new Cliente();
+              // BancoDeDados.setBancoDeDados_id(rs.getInt("cdBancoDeDados"));
+               a.setSt_pv_nome(rs.getString("nome"));
+               retorno.add(a.getSt_pv_nome());
+           }
+           
+
+           
+           ;
+       } catch (SQLException ex) {
+  //         Logger.getLogger(BancoDeDadosDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return retorno;
+   }
+   
+   public ArrayList<Cliente> listar() {
+       String sql = "SELECT * FROM cliente";
+       ArrayList<Cliente> retorno = new ArrayList<>();
        try {
           // PreparedStatement stmt = connection.prepareStatement(sql);
           // ResultSet resultado = stmt.executeQuery();
@@ -212,7 +269,7 @@ public class TipoBancoDAO {
            for (Cliente cliente : retorno) {
    			System.out.println(cliente.getSt_pv_nome());
           }
-
+           return retorno;
            
           // ;
        } catch (SQLException ex) {
